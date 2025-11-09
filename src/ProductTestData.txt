@@ -1,0 +1,4 @@
+00000001,Tricorder,Scan lifeforms analyze substances and diagnose ailments,2499.99
+00000002,Replicator,Food and item replicator - Earl Grey HOT,5999.0
+00000003,Starfleet Uniform,Breathable and ready for away missions,199.95
+00000004,Model USS Enterprise-D,Lights up and plays warp sounds,149.0
