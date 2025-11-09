@@ -1,11 +1,14 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * @author Matt Bennett
+ * Some code refactored from SerialDemoWrite by Tom Wulf
+ */
 public class RandProductMaker
 {
     public static void main(String[] args)
@@ -37,29 +40,12 @@ public class RandProductMaker
             System.out.println(p);
         }
 
-        Path target = new File(System.getProperty("user.dir")).toPath();
-        target = target.resolve("src");
-        //getOutPutPath doesn't work on my Mac
-        Path fileLocation = target.resolve("ProductTestData.txt");
+        File workingDirectory = new File(System.getProperty("user.dir"));
+        Path path = Paths.get(workingDirectory.getPath() + "\\src\\ProjectData.bin");
 
-        try
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path.toFile())))
         {
-            // Typical java pattern of inherited classes
-            // we wrap a BufferedWriter around a lower level BufferedOutputStream
-            // BufferedOutputStream doesn't work on my Mac
-            BufferedWriter writer =
-                    Files.newBufferedWriter(fileLocation, Charset.forName("UTF-8"));
-
-            // Finally can write the file LOL!
-
-            for(Product rec : products)
-            {
-                writer.write(rec.toCSV());  // writer won't write the Product object unless we convert it to a string'
-                writer.newLine();  // adds the new line
-
-            }
-            writer.close(); // must close the file to seal it and flush buffer
-            System.out.println("Data file written!");
+            out.writeObject(products);
         }
         catch (IOException e)
         {
