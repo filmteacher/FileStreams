@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author Matt Bennett based on work by Tom Wulf
  * This class creates a Product object with all the fields and methods.
  */
-public class Product
+public class Product implements Serializable
 {
     private String IDNum;
     private String Name;
@@ -89,7 +90,7 @@ public class Product
 
     public String toString()
     {
-        return getIDNum() + ": " + getName() + "-- " + getDescription() + " (" + getCost() + ")";
+        return getIDNum() + ": " + getName() + "-- " + getDescription() + " ($" + getCost() + ")";
     }
 
     public boolean equals(Object o)
