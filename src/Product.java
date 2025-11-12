@@ -88,6 +88,7 @@ public class Product implements Serializable
         this.Cost = Cost;
     }
 
+    @Override
     public String toString()
     {
         return getIDNum() + ": " + getName() + "-- " + getDescription() + " ($" + getCost() + ")";

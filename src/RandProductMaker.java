@@ -23,11 +23,11 @@ public class RandProductMaker extends JFrame
     JTextField nameFld;
     JTextField descFld;
     JTextField costFld;
+    JTextField recordsFld;
 
     JLabel nameLbl;
     JLabel descLbl;
     JLabel costLbl;
-    JLabel emptyLbl;
 
     JButton addBtn;
     JButton quitBtn;
@@ -37,14 +37,13 @@ public class RandProductMaker extends JFrame
     JFrame frame;
 
     ArrayList<Product> products = new ArrayList<>();
-    boolean done = false;
 
-    String ID = "";
     String Name = "";
     String Desc = "";
     String CostStr = "";
     double Cost = 0;
     String fullProduct = "";
+    int numRecords = 0;
 
     public RandProductMaker() {
         mainPnl = new JPanel();
@@ -84,6 +83,8 @@ public class RandProductMaker extends JFrame
         nameFld = new JTextField(20);
         descFld = new JTextField(20);
         costFld = new JTextField(20);
+        recordsFld = new JTextField(20);
+        recordsFld.setText(numRecords + " records.");
 
         Font labelFont = new Font("Verdana", Font.BOLD, 16);
 
@@ -93,7 +94,6 @@ public class RandProductMaker extends JFrame
         descLbl.setFont(labelFont);
         costLbl = new JLabel("                           Cost:");
         costLbl.setFont(labelFont);
-        emptyLbl = new JLabel("");
 
         addBtn = new JButton("Add Product");
         addBtn.addActionListener(
@@ -125,7 +125,8 @@ public class RandProductMaker extends JFrame
                         }
 
                         fullProduct = productRec.toString();
-                        infoArea.setText(fullProduct + "/n added to database. Enter another or click Quit!");
+                        infoArea.setText(fullProduct + " added to database. Enter another or click Quit!");
+                        numRecords = products.size();
 
                         nameFld.setText("");
                         Name = "";
@@ -134,6 +135,7 @@ public class RandProductMaker extends JFrame
                         costFld.setText("");
                         CostStr = "";
                         Cost = 0;
+                        recordsFld.setText(numRecords + " records.");
                     }
                 });
 
@@ -146,7 +148,7 @@ public class RandProductMaker extends JFrame
         entryPnl.add(costLbl);
         entryPnl.add(costFld);
 
-        entryPnl.add(emptyLbl);
+        entryPnl.add(recordsFld);
         entryPnl.add(addBtn);
 
         mainPnl.add(entryPnl);

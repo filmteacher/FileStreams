@@ -4,6 +4,6 @@ public class ProductSearchRunner
 {
     public static void main(String[] args)
     {
-        JFrame frame = new RandProductSearch();
+        JFrame frameSearch = new RandProductSearch();
     }
 }
